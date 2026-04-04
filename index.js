@@ -36,7 +36,7 @@ client.on("messageCreate", (message) => {
 
         // Specialbesked til Drakkefar
         if (lowerNick === "drakkefar") {
-            message.reply("🌈 Drakkefar ER 1000% FUCKING I DAG 🌈");
+            message.reply("🌈 Drakkefar ER 1000% FUCKING GAY I DAG 🌈");
         } else {
             message.reply(`Du er **${score}% Gay** i dag!🌈`);
         }
