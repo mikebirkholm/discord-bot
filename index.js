@@ -8,12 +8,14 @@ const client = new Client({
     ]
 });
 
+client.on("ready", () => {
+    console.log(`✅ Botten er online som ${client.user.tag}`);
+});
+
 client.on("messageCreate", (message) => {
     if (message.author.bot) return;
 
     if (message.content === "!gay") {
-
-        // Lav score baseret på bruger + dag
         const userId = message.author.id;
         const today = new Date().toDateString();
         const seed = userId + today;
@@ -25,24 +27,17 @@ client.on("messageCreate", (message) => {
 
         const score = Math.abs(hash % 101);
 
-        // Hent nickname (server navn) eller username
-        let nickname = message.member?.nickname || message.author.username;
-
-        // Gør klar til sammenligning
-        const lowerNick = nickname.trim().toLowerCase();
-
-        // 🔥 DEBUG (kan fjernes senere)
-        console.log("Navn:", nickname);
-
-        // Specialbesked til dreqz
-        if (lowerNick === "dreqz") {
-            message.reply("🌈 Drakkefar ER 1000% FUCKING GAY I DAG 🌈");
+        // 🔥 SPECIAL TIL Drakkefar (bruger ID - virker altid)
+        if (message.author.id === "563771068620210182") {
+            message.reply(`🌈Drakkefar ER 1000% FUCKING GAY I DAG🌈 `);
         } else {
-            message.reply(`Du er **${score}% Gay** i dag!🌈`);
+            // 👇 Normal besked til alle andre
+            message.reply(`🌈Du er ${score}% Gay i dag🌈`);
         }
     }
 });
 
+// ⚠️ Railway token
 client.login(process.env.DISCORD_TOKEN);
 
 
